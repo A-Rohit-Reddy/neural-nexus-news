@@ -1,0 +1,68 @@
+import { Agent } from '@/types/agent';
+
+export const agents: Agent[] = [
+  {
+    id: 'manager',
+    name: 'The Orchestrator',
+    role: 'Manager',
+    icon: '🎯',
+    status: 'idle',
+    color: 'purple',
+  },
+  {
+    id: 'scavenger',
+    name: 'The Scavenger',
+    role: 'News Gatherer',
+    icon: '🔍',
+    status: 'idle',
+    color: 'cyan',
+  },
+  {
+    id: 'skeptic',
+    name: 'The Skeptic',
+    role: 'Fact Checker',
+    icon: '🧐',
+    status: 'idle',
+    color: 'orange',
+  },
+  {
+    id: 'analyst',
+    name: 'The Analyst',
+    role: 'Technical Reader',
+    icon: '📊',
+    status: 'idle',
+    color: 'blue',
+  },
+  {
+    id: 'editor',
+    name: 'The Editor-in-Chief',
+    role: 'Decision Maker',
+    icon: '✍️',
+    status: 'idle',
+    color: 'magenta',
+  },
+  {
+    id: 'writer',
+    name: 'The Writer',
+    role: 'Content Creator',
+    icon: '📝',
+    status: 'idle',
+    color: 'green',
+  },
+  {
+    id: 'guardian',
+    name: 'The Guardian',
+    role: 'Safety Control',
+    icon: '🛡️',
+    status: 'idle',
+    color: 'red',
+  },
+  {
+    id: 'quant',
+    name: 'The Quant',
+    role: 'Market Analyst',
+    icon: '📈',
+    status: 'idle',
+    color: 'cyan',
+  },
+];
