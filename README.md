@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Welcome to our project Neural Nexus News
 
 ## How can I edit this code?
 
