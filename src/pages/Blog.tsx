@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { BlogPost } from '@/types/agent';
-import { mockPosts } from '@/data/mockPosts';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { apiFetch } from '@/lib/api';
 import { BlogPostCard } from '@/components/BlogPostCard';
-import { BlogPostModal } from '@/components/BlogPostModal';
 import { Cpu, Sparkles } from 'lucide-react';
 
 export default function Blog() {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const navigate = useNavigate();
+  const { data: posts, isLoading, isError } = useQuery({queryKey: ['articles'], queryFn: () => apiFetch('/articles')});
 
   return (
     <div className="min-h-screen bg-gradient-hero neural-grid">
@@ -63,24 +63,27 @@ export default function Blog() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {mockPosts.map((post, index) => (
-              <BlogPostCard
-                key={post.id}
-                post={post}
-                featured={index === 0}
-                onClick={() => setSelectedPost(post)}
-              />
-            ))}
+            {isLoading ? (
+              <div className="col-span-full rounded-3xl border border-border bg-card/50 p-10 text-center text-muted-foreground">
+                Loading latest articles...
+              </div>
+            ) : isError ? (
+              <div className="col-span-full rounded-3xl border border-border bg-card/50 p-10 text-center text-destructive">
+                Unable to load articles. Please try again.
+              </div>
+            ) : (
+              posts?.map((post: any, index: number) => (
+                <BlogPostCard
+                  key={post.id}
+                  post={{ ...post, publishedAt: new Date(post.publishedAt) }}
+                  featured={index === 0}
+                  onClick={() => navigate(`/blog/${post.id}`)}
+                />
+              ))
+            )}
           </div>
         </div>
       </section>
-
-      {/* Modal */}
-      <BlogPostModal
-        post={selectedPost}
-        open={!!selectedPost}
-        onOpenChange={(open) => !open && setSelectedPost(null)}
-      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Newspaper, Terminal, Cpu } from 'lucide-react';
+import { Newspaper, Terminal, Cpu, Settings } from 'lucide-react';
 
 export function Header() {
   const location = useLocation();
@@ -8,6 +8,7 @@ export function Header() {
   const navItems = [
     { path: '/', label: 'The Blog', icon: Newspaper },
     { path: '/control-room', label: 'Control Room', icon: Terminal },
+    { path: '/settings/integrations', label: 'Integrations', icon: Settings },
   ];
 
   return (

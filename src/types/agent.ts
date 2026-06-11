@@ -31,6 +31,10 @@ export interface BlogPost {
   title: string;
   summary: string;
   content: string;
+  author?: string;
+  category?: string;
+  tags?: string[];
+  featuredImage?: string;
   marketPulse: {
     metric: string;
     value: string;

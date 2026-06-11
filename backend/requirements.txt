@@ -1,9 +1,14 @@
+fastapi
+uvicorn
+pymongo
+cryptography
+httpx
+python-dotenv
+pydantic
 langgraph
 langchain
 langchain-openai
 langchain-community
 tavily-python
 streamlit
-python-dotenv
-pydantic
 langchain-google-genai

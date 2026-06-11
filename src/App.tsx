@@ -6,26 +6,33 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import Index from "./pages/Index";
 import ControlRoom from "./pages/ControlRoom";
+import ArticlePage from "./pages/ArticlePage";
+import Integrations from "./pages/Integrations";
 import NotFound from "./pages/NotFound";
+import { ArticleProvider } from "@/context/ArticleContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="min-h-screen bg-background">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/control-room" element={<ControlRoom />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <ArticleProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="min-h-screen bg-background">
+            <Header />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/control-room" element={<ControlRoom />} />
+              <Route path="/blog/:id" element={<ArticlePage />} />
+              <Route path="/settings/integrations" element={<Integrations />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </ArticleProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
